@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PersonalNews.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>新闻列表</h2>
+
+<p>
+    @Html.ActionLink("写新闻", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Intro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Intro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ArticleId }) |
+            @Html.ActionLink("详情", "Details", new { id=item.ArticleId }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.ArticleId })
+        </td>
+    </tr>
+}
+    @Html.Raw(ViewBag.page)
+</table>

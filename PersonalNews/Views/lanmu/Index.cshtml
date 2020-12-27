@@ -1,0 +1,46 @@
+﻿<script src="~/Scripts/jquery-3.4.1.js"></script>
+<h2>近期新闻</h2>
+<hr />
+
+<div style="margin-bottom:100px;margin-top:50px">
+
+    <ul id="lanmu" style="float:left;width:150px;border:5px;font-size:20px;background-color:aquamarine">
+        loading
+    </ul>
+    <ul id="content" style="font-size: 20px;margin-left: 200px;background-color:lightgray">
+        👈
+    </ul>
+    </br>
+</div>
+</br>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "post",
+            url: "/lanmu/GetDivideList",
+            dataType: "html",
+            success: function (msg) {
+                $('#lanmu').html(msg);
+            }
+
+        });
+    })
+
+    //获取文章列表
+    function getDivideNews(lanmuid, pageno) {
+        $.ajax({
+            type: "post",
+            url: "/News/getDivideNews",
+            dataType: "html",
+            data: {
+                lanmuid: lanmuid,
+                pageno: pageno
+            },
+            success: function (msg) {
+                $('#content').html(msg);
+            }
+        });
+    }
+</script>
